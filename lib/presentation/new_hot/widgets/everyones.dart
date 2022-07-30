@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:netflix_clone/core/colors/colors.dart';
+import 'package:netflix_clone/core/colors.dart';
 import 'package:netflix_clone/core/constants.dart';
 import 'package:netflix_clone/presentation/fast_laugh/widgets/actions.dart';
 import 'package:netflix_clone/presentation/home/widgets/button_widget.dart';
@@ -10,9 +10,7 @@ class EveryonesWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
+    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       const Text('Movie Name',
           style: TextStyle(
             fontSize: 17,
@@ -21,9 +19,9 @@ class EveryonesWidget extends StatelessWidget {
       kHeight10,
       const Text(
           'Landing the lead in the school musical is a dream come true for Jodi, until the pressure sends her confidence - and her relationship - into a tailspain.',
-          style:  TextStyle(color: kGreyColor)),
+          style: TextStyle(color: kGreyColor)),
       kHeight15,
-      const VideoWidget() ,
+      const VideoWidget(),
       kHeight10,
       Row(
         children: const [
@@ -32,14 +30,27 @@ class EveryonesWidget extends StatelessWidget {
             width: 50,
           ),
           Spacer(),
-          ActionsWidget(icon: Icons.send_outlined, title: 'Share',isShare: true,isNewHot: true,),
+          ActionsWidget(
+            icon: Icons.send_outlined,
+            title: 'Share',
+            isShare: true,
+            isNewHot: true,
+          ),
           kWidth,
-          ButtonWidget(icon: Icons.add, buttonText: 'My List',isNewHot: true,),
+          ButtonWidget(
+            icon: Icons.add,
+            buttonText: 'My List',
+            isNewHot: true,
+          ),
           kWidth,
-          ButtonWidget(icon: Icons.play_arrow, buttonText: 'Play',isNewHot: true,),
+          ButtonWidget(
+            icon: Icons.play_arrow,
+            buttonText: 'Play',
+            isNewHot: true,
+          ),
           kWidth
         ],
-      )   
+      )
     ]);
   }
 }

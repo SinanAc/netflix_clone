@@ -1,5 +1,6 @@
-
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:netflix_clone/application/downloads/downloads_bloc.dart';
 import 'package:netflix_clone/presentation/downloads/widgets/section_2.dart';
 import 'package:netflix_clone/presentation/downloads/widgets/section_3.dart';
 import 'package:netflix_clone/presentation/downloads/widgets/smart_download.dart';
@@ -9,11 +10,15 @@ class ScreenDownloads extends StatelessWidget {
   ScreenDownloads({Key? key}) : super(key: key);
   final _widgetList = [
     const SmartDownloads(),
-    Section2(),
+    const Section2(),
     const Section3(),
   ];
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      BlocProvider.of<DownloadsBloc>(context)
+          .add(const DownloadsEvent.getDownloadsImages());
+    });
     return Scaffold(
       appBar: const PreferredSize(
           preferredSize: Size.fromHeight(50),
@@ -21,12 +26,9 @@ class ScreenDownloads extends StatelessWidget {
       body: ListView.separated(
         padding: const EdgeInsets.all(10),
         itemCount: _widgetList.length,
-        itemBuilder: (context, index) =>  _widgetList[index],
-        separatorBuilder: (context, index) =>const SizedBox(height: 20),
+        itemBuilder: (context, index) => _widgetList[index],
+        separatorBuilder: (context, index) => const SizedBox(height: 20),
       ),
     );
   }
 }
-
-
-

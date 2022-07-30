@@ -23,8 +23,7 @@ class ScreenHome extends StatelessWidget {
                   final ScrollDirection direction = notification.direction;
                   if (direction == ScrollDirection.reverse) {
                     scrollNotifier.value = false;
-                  } 
-                  else if (direction == ScrollDirection.forward) {
+                  } else if (direction == ScrollDirection.forward) {
                     scrollNotifier.value = true;
                   }
                   return true;
@@ -46,8 +45,8 @@ class ScreenHome extends StatelessWidget {
                     ]),
                     scrollNotifier.value
                         ? AnimatedContainer(
-                          duration: const Duration(milliseconds: 1000),
-                          height: 90,
+                            duration: const Duration(milliseconds: 1000),
+                            height: 90,
                             width: double.infinity,
                             color: Colors.black.withOpacity(0.2),
                             child: Column(
@@ -74,11 +73,12 @@ class ScreenHome extends StatelessWidget {
                                   ],
                                 ),
                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
                                   children: const [
-                                    Text('TV Shows',style:kHomeStyle),
-                                    Text('Movies',style:kHomeStyle),
-                                    Text('Categories',style:kHomeStyle)
+                                    Text('TV Shows', style: kHomeStyle),
+                                    Text('Movies', style: kHomeStyle),
+                                    Text('Categories', style: kHomeStyle)
                                   ],
                                 )
                               ],

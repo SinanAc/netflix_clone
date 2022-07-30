@@ -6,7 +6,8 @@ import 'package:netflix_clone/presentation/widgets/main_title.dart';
 class NumberCard extends StatelessWidget {
   final String title;
   const NumberCard({
-    Key? key,required this.title,
+    Key? key,
+    required this.title,
   }) : super(key: key);
 
   @override
@@ -14,17 +15,15 @@ class NumberCard extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-         MainTitle(title: title),
+        MainTitle(title: title),
         kHeight10,
-            LimitedBox(
-              maxHeight: MediaQuery.of(context).devicePixelRatio*70,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: List.generate(
-                  10, (index)=>
-                 MovieCard(index: index))),
-            ),
-        ],
+        LimitedBox(
+          maxHeight: MediaQuery.of(context).devicePixelRatio * 70,
+          child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: List.generate(10, (index) => MovieCard(index: index))),
+        ),
+      ],
     );
   }
 }
