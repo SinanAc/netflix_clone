@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:netflix_clone/core/colors/colors.dart';
 import 'package:netflix_clone/core/constants.dart';
+import 'package:netflix_clone/presentation/fast_laugh/widgets/actions.dart';
+import 'package:netflix_clone/presentation/search/widgets/search_idle.dart';
 
 class VideoListItem extends StatelessWidget {
   final int index; 
@@ -16,7 +18,7 @@ class VideoListItem extends StatelessWidget {
         Align(
           alignment: Alignment.bottomCenter,
           child: Padding(
-            padding: const EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(12.0),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.end,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -24,44 +26,34 @@ class VideoListItem extends StatelessWidget {
                 //lef-side
                 CircleAvatar(
                   backgroundColor: kBlackColor.withOpacity(0.4),
-                  radius: 25,
+                  radius: 23,
                   child: IconButton(
                     onPressed: (){}, 
-                    icon:const Icon(Icons.volume_mute))
+                    icon:const Icon(Icons.volume_off,size: 25))
                     ),
                 //right-side
                 Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: const[
-                    VideoActionsWidget(icon: Icons.emoji_emotions,title: 'LOL'),
-                    VideoActionsWidget(icon: Icons.add,title: 'My List'),
-                    VideoActionsWidget(icon: Icons.share_outlined, title: 'Share')
+                    CircleAvatar(
+                      radius: 33,
+                      backgroundImage: NetworkImage(imgUrl),
+                    ),
+                    SizedBox(height: 25),
+                    ActionsWidget(icon: Icons.emoji_emotions,title: 'LOL'),
+                    kHeight15,
+                    ActionsWidget(icon: Icons.add,title: 'My List'),
+                    kHeight15,
+                    ActionsWidget(icon: Icons.send_outlined, title: 'Share',isShare: true),
+                    kHeight15,
+                    ActionsWidget(icon: Icons.play_arrow, title: 'Play'),
+                    kHeight15
                   ],
                 )    
               ],
             ),
           ),
         )
-      ],
-    );
-  }
-}
-
-class VideoActionsWidget extends StatelessWidget {
-  final IconData icon;
-  final String title;
-  const VideoActionsWidget({Key? key,required this.icon,required this.title}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Icon(icon,
-        color: kWhiteColor,
-        size: 30,
-        ),
-        Text(title),
-        kHeight,
       ],
     );
   }

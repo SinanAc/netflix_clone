@@ -12,9 +12,9 @@ class SearchResultWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        kHeight,
+        kHeight10,
         const SearchTextTItle(title: 'Movies & TV'),
-        kHeight,
+        kHeight10,
         Expanded(
             child: GridView.count(
           shrinkWrap: true,
@@ -25,7 +25,7 @@ class SearchResultWidget extends StatelessWidget {
           children: List.generate(
             12,
             (index) {
-              return const MainCard();
+              return const ResultCard();
             },
           ),
         ))
@@ -34,8 +34,8 @@ class SearchResultWidget extends StatelessWidget {
   }
 }
 
-class MainCard extends StatelessWidget {
-  const MainCard({Key? key}) : super(key: key);
+class ResultCard extends StatelessWidget {
+  const ResultCard({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +43,7 @@ class MainCard extends StatelessWidget {
       decoration:  BoxDecoration(
         borderRadius: BorderRadius.circular(7),
         image: const DecorationImage(
-          image:  NetworkImage(gridImage),
+          image:  NetworkImage('https://igimages.gumlet.io/tamil/home/kamal-vikrammovie-glimpseposter.jpg?w=376&dpr=2.6'),
           fit: BoxFit.cover,
         )
       ),
