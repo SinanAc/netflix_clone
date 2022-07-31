@@ -10,6 +10,9 @@ class Section2 extends StatelessWidget {
   const Section2({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      BlocProvider.of<DownloadsBloc>(context).add(const GetDownloadsImages());
+    });
     final Size size = MediaQuery.of(context).size;
     return Column(children: [
       const Text(
@@ -36,32 +39,37 @@ class Section2 extends StatelessWidget {
             height: size.height * 0.48,
             child: state.isLoading
                 ? const Center(child: CircularProgressIndicator())
-                : Stack(
-                    alignment: AlignmentDirectional.center,
-                    children: [
-                      CircleAvatar(
-                        radius: size.width * 0.38,
-                        backgroundColor: kGreyColor[800],
+                : state.downloads.isEmpty
+                    ? const Center(child: Text('Error while getting data'))
+                    : Stack(
+                        alignment: AlignmentDirectional.center,
+                        children: [
+                          CircleAvatar(
+                            radius: size.width * 0.38,
+                            backgroundColor: kGreyColor[800],
+                          ),
+                          DownloadsImageWidget(
+                            img:
+                                '$imageAppendUrl${state.downloads[4].posterPath}',
+                            margin: const EdgeInsets.only(right: 160),
+                            angle: -20,
+                            size: Size(size.width * 0.4, size.height * 0.28),
+                          ),
+                          DownloadsImageWidget(
+                            img:
+                                '$imageAppendUrl${state.downloads[6].posterPath}',
+                            margin: const EdgeInsets.only(left: 160),
+                            angle: 20,
+                            size: Size(size.width * 0.4, size.height * 0.28),
+                          ),
+                          DownloadsImageWidget(
+                            img:
+                                '$imageAppendUrl${state.downloads[0].posterPath}',
+                            margin: const EdgeInsets.only(top: 15),
+                            size: Size(size.width * 0.42, size.height * 0.32),
+                          )
+                        ],
                       ),
-                      DownloadsImageWidget(
-                        img: '$imageAppendUrl${state.downloads[4].posterPath}',
-                        margin: const EdgeInsets.only(right: 160),
-                        angle: -20,
-                        size: Size(size.width * 0.4, size.height * 0.28),
-                      ),
-                      DownloadsImageWidget(
-                        img: '$imageAppendUrl${state.downloads[6].posterPath}',
-                        margin: const EdgeInsets.only(left: 160),
-                        angle: 20,
-                        size: Size(size.width * 0.4, size.height * 0.28),
-                      ),
-                      DownloadsImageWidget(
-                        img: '$imageAppendUrl${state.downloads[0].posterPath}',
-                        margin: const EdgeInsets.only(top: 15),
-                        size: Size(size.width * 0.42, size.height * 0.32),
-                      )
-                    ],
-                  ),
           );
         },
       ),

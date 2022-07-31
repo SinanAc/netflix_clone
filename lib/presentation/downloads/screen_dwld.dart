@@ -16,8 +16,7 @@ class ScreenDownloads extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      BlocProvider.of<DownloadsBloc>(context)
-          .add(const DownloadsEvent.getDownloadsImages());
+      BlocProvider.of<DownloadsBloc>(context).add(const GetDownloadsImages());
     });
     return Scaffold(
       appBar: const PreferredSize(

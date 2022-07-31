@@ -1,6 +1,7 @@
 import 'package:bordered_text/bordered_text.dart';
 import 'package:flutter/material.dart';
 import 'package:netflix_clone/core/colors.dart';
+import 'package:netflix_clone/presentation/widgets/main_card.dart';
 
 class MovieCard extends StatelessWidget {
   final int index;
@@ -23,8 +24,7 @@ class MovieCard extends StatelessWidget {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(7),
                   image: const DecorationImage(
-                    image: NetworkImage(
-                        'https://igimages.gumlet.io/tamil/home/kamal-vikrammovie-glimpseposter.jpg?w=376&dpr=2.6'),
+                    image: NetworkImage(gridImage),
                     fit: BoxFit.cover,
                   )),
             ),

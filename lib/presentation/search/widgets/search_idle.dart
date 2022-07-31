@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:netflix_clone/application/search/search_bloc.dart';
 import 'package:netflix_clone/core/constants.dart';
+import 'package:netflix_clone/core/url.dart';
 import 'package:netflix_clone/presentation/search/widgets/title.dart';
 import 'package:netflix_clone/presentation/search/widgets/top_search_tile.dart';
-
-const imgUrl =
-    'https://www.themoviedb.org/t/p/w250_and_h141_face/iczRRWCXjNsDmiHoVejomBqiwuG.jpg';
 
 class SearchIdleWidget extends StatelessWidget {
   const SearchIdleWidget({Key? key}) : super(key: key);
@@ -17,11 +17,27 @@ class SearchIdleWidget extends StatelessWidget {
         const SearchTextTItle(title: 'Top Searches'),
         kHeight10,
         Expanded(
-          child: ListView.separated(
-              shrinkWrap: true,
-              itemBuilder: (ctx, index) => const TopSearchItemTile(),
-              separatorBuilder: (ctx, index) => const SizedBox(height: 15),
-              itemCount: 10),
+          child: BlocBuilder<SearchBloc, SearchState>(
+            builder: (context, state) {
+              if (state.isLoading) {
+                return const Center(child: CircularProgressIndicator());
+              } else if (state.isError) {
+                return const Center(child: Text('Error !!'));
+              } else if (state.idleList.isEmpty) {
+                return const Center(child: Text('List is empty !!'));
+              }
+              return ListView.separated(
+                  shrinkWrap: true,
+                  itemBuilder: (ctx, index) {
+                    final movie = state.idleList[index];
+                    return TopSearchItemTile(
+                        imageUrl: '$imageAppendUrl${movie.posterPath}',
+                        title: movie.originalTitle ?? '-No Title-');
+                  },
+                  separatorBuilder: (ctx, index) => const SizedBox(height: 15),
+                  itemCount: state.idleList.length);
+            },
+          ),
         ),
       ],
     );

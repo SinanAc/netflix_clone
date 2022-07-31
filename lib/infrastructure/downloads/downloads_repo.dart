@@ -7,7 +7,7 @@ import 'package:netflix_clone/domain/downloads/i_downloads_repo.dart';
 import 'package:netflix_clone/domain/downloads/models/downloads.dart';
 
 @LazySingleton(as: IDownloadsRepo)
-class DownloadsRepository implements IDownloadsRepo {
+class DownloadsRepo implements IDownloadsRepo {
   @override
   Future<Either<MainFailures, List<Downloads>>> getDownloadsImages() async {
     try {
@@ -17,7 +17,7 @@ class DownloadsRepository implements IDownloadsRepo {
         final downloadsList = (response.data['results'] as List).map((e) {
           return Downloads.fromJson(e);
         }).toList();
-        
+
         return Right(downloadsList);
       } else {
         return const Left(MainFailures.serverFailure());

@@ -11,11 +11,15 @@ class VideoWidget extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return Stack(
       children: [
-        Image.network(
-          'https://www.themoviedb.org/t/p/w533_and_h300_bestv2/1uhf2qYd7wBcOsTJ7Li1FcH672D.jpg',
+        SizedBox(
           width: double.infinity,
           height: size.height * 0.25,
-          fit: BoxFit.cover,
+          child: Image.network(
+            'https://www.themoviedb.org/t/p/w533_and_h300_bestv2/1uhf2qYd7wBcOsTJ7Li1FcH672D.jpg',
+            width: double.infinity,
+            height: size.height * 0.25,
+            fit: BoxFit.cover,
+          ),
         ),
         Positioned(
             bottom: 10,

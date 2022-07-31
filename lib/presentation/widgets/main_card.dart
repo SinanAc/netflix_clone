@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:netflix_clone/presentation/search/widgets/search_results.dart';
+
+const gridImage =
+    "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/y4BbshOj69MOIhsm0oELDnymiTY.jpg";
 
 class MainCard extends StatelessWidget {
   const MainCard({
