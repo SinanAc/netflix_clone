@@ -1,3 +1,5 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -22,7 +24,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       if (state.idleList.isNotEmpty) {
         emit(SearchState(
           searchResultList: [],
-          idleList: state.idleList,
+          idleList: state.idleList.reversed.toList(),
           isLoading: false,
           isError: false,
         ));

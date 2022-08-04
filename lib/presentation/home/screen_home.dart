@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:netflix_clone/application/home/home_bloc.dart';
 import 'package:netflix_clone/core/constants.dart';
+import 'package:netflix_clone/core/url.dart';
 import 'package:netflix_clone/presentation/home/widgets/bg_home.dart';
 import 'package:netflix_clone/presentation/home/widgets/number_card.dart';
-import 'package:netflix_clone/presentation/widgets/main_section.dart';
+import 'package:netflix_clone/presentation/widgets/main_card_with_title.dart';
 
 ValueNotifier<bool> scrollNotifier = ValueNotifier(true);
 
@@ -12,6 +15,9 @@ class ScreenHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      BlocProvider.of<HomeBloc>(context).add(const GetHomeScreenData());
+    });
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -30,19 +36,51 @@ class ScreenHome extends StatelessWidget {
                 },
                 child: Stack(
                   children: [
-                    ListView(children: const [
-                      BackgroundHome(),
-                      kHeight10,
-                      MainCardsWithTitle(title: 'Released in the past year'),
-                      kHeight15,
-                      MainCardsWithTitle(title: 'Trending Now'),
-                      kHeight15,
-                      NumberCard(title: 'Top 10 in India Today'),
-                      kHeight15,
-                      MainCardsWithTitle(title: 'Tense Dramas'),
-                      kHeight15,
-                      MainCardsWithTitle(title: 'South Indian Cinema')
-                    ]),
+                    BlocBuilder<HomeBloc, HomeState>(
+                      builder: (context, state) {
+                        if (state.isLoading) {
+                          return const Center(
+                              child: CircularProgressIndicator());
+                        } else if (state.isError) {
+                          return const Center(
+                              child: Text('Error while gettig data !!'));
+                        } else {
+                          final pastYrList =
+                              state.pastYearMovieList.map((movie) {
+                            return '$imageAppendUrl${movie.posterPath}';
+                          }).toList();
+                          final topTen = state.topTenTvList.map((movie) {
+                            return '$imageAppendUrl${movie.posterPath}';
+                          }).toList();
+                          return ListView(children: [
+                            BackgroundHome(imageUrl: topTen[0]),
+                            kHeight10,
+                            MainCardsWithTitle(
+                              title: 'Released in the past year',
+                              imageList: pastYrList,
+                            ),
+                            kHeight15,
+                            MainCardsWithTitle(
+                              title: 'Trending Now',
+                              imageList: pastYrList.reversed.toList(),
+                            ),
+                            kHeight15,
+                            NumberCard(
+                              title: 'Top 10 in India Today',
+                              imgList: topTen,
+                            ),
+                            kHeight15,
+                            MainCardsWithTitle(
+                                title: 'Tense Dramas',
+                                imageList: topTen.reversed.toList()),
+                            kHeight15,
+                            MainCardsWithTitle(
+                                title: 'South Indian Cinema',
+                                imageList: pastYrList.reversed.toList()),
+                          ]);
+                        }
+                      },
+                    ),
                     scrollNotifier.value
                         ? AnimatedContainer(
                             duration: const Duration(milliseconds: 1000),

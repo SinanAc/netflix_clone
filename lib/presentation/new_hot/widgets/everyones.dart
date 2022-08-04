@@ -1,56 +1,65 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:netflix_clone/core/colors.dart';
 import 'package:netflix_clone/core/constants.dart';
-import 'package:netflix_clone/presentation/fast_laugh/widgets/actions.dart';
 import 'package:netflix_clone/presentation/home/widgets/button_widget.dart';
 import 'package:netflix_clone/presentation/new_hot/widgets/video_widget.dart';
 
 class EveryonesWidget extends StatelessWidget {
-  const EveryonesWidget({Key? key}) : super(key: key);
+  final String posterPath;
+  final String movieName;
+  final String movieDescription;
+  const EveryonesWidget({
+    Key? key,
+    required this.posterPath,
+    required this.movieName,
+    required this.movieDescription,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      const Text('Movie Name',
-          style: TextStyle(
-            fontSize: 17,
-            fontWeight: FontWeight.bold,
-          )),
-      kHeight10,
-      const Text(
-          'Landing the lead in the school musical is a dream come true for Jodi, until the pressure sends her confidence - and her relationship - into a tailspain.',
-          style: TextStyle(color: kGreyColor)),
-      kHeight15,
-      const VideoWidget(),
-      kHeight10,
-      Row(
-        children: const [
-          SizedBox(
-            height: 50,
-            width: 50,
-          ),
-          Spacer(),
-          ActionsWidget(
-            icon: Icons.send_outlined,
-            title: 'Share',
-            isShare: true,
-            isNewHot: true,
-          ),
-          kWidth,
-          ButtonWidget(
-            icon: Icons.add,
-            buttonText: 'My List',
-            isNewHot: true,
-          ),
-          kWidth,
-          ButtonWidget(
-            icon: Icons.play_arrow,
-            buttonText: 'Play',
-            isNewHot: true,
-          ),
-          kWidth
-        ],
-      )
-    ]);
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 15),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Text(movieName,
+            style: const TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            )),
+        const SizedBox(height: 5),
+        Text(movieDescription,
+            style: const TextStyle(color: kGreyColor, fontSize: 16)),
+        kHeight15,
+        VideoWidget(
+          imageUrlPath: posterPath,
+        ),
+        kHeight10,
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: const [
+            SizedBox(
+              height: 50,
+              width: 50,
+            ),
+            Spacer(),
+            ButtonWidget(
+              icon: CupertinoIcons.paperplane,
+              buttonText: 'Share',
+              iconSize: 25,
+            ),
+            kWidth15,
+            ButtonWidget(
+              icon: Icons.add,
+              buttonText: 'My List',
+            ),
+            kWidth15,
+            ButtonWidget(
+              icon: Icons.play_arrow,
+              buttonText: 'Play',
+            ),
+          ],
+        )
+      ]),
+    );
   }
 }

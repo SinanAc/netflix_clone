@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:netflix_clone/core/colors.dart';
-import 'package:netflix_clone/core/constants.dart';
 
 class Section3 extends StatelessWidget {
   const Section3({Key? key}) : super(key: key);
@@ -32,7 +31,7 @@ class Section3 extends StatelessWidget {
             ),
           ),
         ),
-        kHeight10,
+        const SizedBox(height: 3),
         MaterialButton(
             onPressed: () {},
             shape: RoundedRectangleBorder(

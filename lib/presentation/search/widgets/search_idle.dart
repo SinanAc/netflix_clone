@@ -22,7 +22,7 @@ class SearchIdleWidget extends StatelessWidget {
               if (state.isLoading) {
                 return const Center(child: CircularProgressIndicator());
               } else if (state.isError) {
-                return const Center(child: Text('Error !!'));
+                return const Center(child: Text('Error while getting data!!'));
               } else if (state.idleList.isEmpty) {
                 return const Center(child: Text('List is empty !!'));
               }
@@ -34,7 +34,7 @@ class SearchIdleWidget extends StatelessWidget {
                         imageUrl: '$imageAppendUrl${movie.posterPath}',
                         title: movie.originalTitle ?? '-No Title-');
                   },
-                  separatorBuilder: (ctx, index) => const SizedBox(height: 15),
+                  separatorBuilder: (ctx, index) => const SizedBox(height: 10),
                   itemCount: state.idleList.length);
             },
           ),

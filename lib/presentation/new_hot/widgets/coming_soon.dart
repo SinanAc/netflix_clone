@@ -1,11 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:netflix_clone/core/colors.dart';
 import 'package:netflix_clone/core/constants.dart';
 import 'package:netflix_clone/presentation/home/widgets/button_widget.dart';
 import 'package:netflix_clone/presentation/new_hot/widgets/video_widget.dart';
 
 class ComingSoonWidget extends StatelessWidget {
-  const ComingSoonWidget({Key? key}) : super(key: key);
+  final String id;
+  final String month;
+  final String day;
+  final String posterPath;
+  final String movieName;
+  final String movieDescription;
+  const ComingSoonWidget({
+    Key? key,
+    required this.id,
+    required this.month,
+    required this.day,
+    required this.posterPath,
+    required this.movieName,
+    required this.movieDescription,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,63 +28,72 @@ class ComingSoonWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(
-          width: 40,
-          child: Column(children: const [
+          width: 50,
+          child: Column(children: [
             Text(
-              'FEB',
-              style: TextStyle(
+              month,
+              style: const TextStyle(
                   fontSize: 12, fontWeight: FontWeight.bold, color: kGreyColor),
             ),
-            Text('11',
-                style: TextStyle(
+            Text(day,
+                style: const TextStyle(
                     fontSize: 25,
                     fontWeight: FontWeight.bold,
-                    letterSpacing: 7)),
+                    letterSpacing: 4)),
           ]),
         ),
         Expanded(
             child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const VideoWidget(),
+            VideoWidget(imageUrlPath: posterPath),
             kHeight15,
             Row(
-              children: const [
-                Text(
-                  'Movie Name',
-                  style: TextStyle(
+              children: [
+                Expanded(
+                  child: Text(
+                    movieName,
+                    style: TextStyle(
+                      fontFamily: GoogleFonts.acme().fontFamily,
                       overflow: TextOverflow.ellipsis,
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold),
-                ),
-                Spacer(),
-                ButtonWidget(
-                  icon: Icons.notifications_outlined,
-                  iconSize: 20,
-                  buttonText: 'Reminder',
-                  fontSize: 10,
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
                 kWidth,
-                ButtonWidget(
+                const ButtonWidget(
+                  icon: Icons.notifications_outlined,
+                  iconSize: 22,
+                  buttonText: 'Reminder',
+                  fontSize: 12,
+                  isNewHot: true,
+                ),
+                kWidth,
+                const ButtonWidget(
                   icon: Icons.info_outline,
-                  iconSize: 20,
+                  iconSize: 22,
                   buttonText: 'Info',
-                  fontSize: 10,
+                  fontSize: 12,
+                  isNewHot: true,
                 ),
                 kWidth
               ],
             ),
-            const Text('Coming on Friday', style: TextStyle(color: kGreyColor)),
-            kHeight15,
-            const Text('Movie Name',
-                style: TextStyle(
-                  fontSize: 17,
+            Text('Coming on $month $day 2023',
+                style: const TextStyle(color: kGreyColor)),
+            kHeight10,
+            Text(movieName,
+                style: const TextStyle(
+                  fontSize: 20,
                   fontWeight: FontWeight.bold,
                 )),
-            kHeight10,
-            const Text(
-                'Landing the lead in the school musical is a dream come true for Jodi, until the pressure sends her confidence - and her relationship - into a tailspain. But when Jodi is forced to take a risk, she must decide whether to trust the new teacher or to abandon her old one.',
-                style: TextStyle(color: kGreyColor)),
+            const SizedBox(height: 5),
+            Text(movieDescription,
+                style: const TextStyle(
+                  color: kGreyColor,
+                  fontSize: 16,
+                )),
           ],
         ))
       ],

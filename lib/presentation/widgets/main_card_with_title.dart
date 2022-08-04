@@ -4,7 +4,12 @@ import 'package:netflix_clone/presentation/widgets/main_title.dart';
 
 class MainCardsWithTitle extends StatelessWidget {
   final String title;
-  const MainCardsWithTitle({Key? key, required this.title}) : super(key: key);
+  final List<String> imageList;
+  const MainCardsWithTitle({
+    Key? key,
+    required this.title,
+    required this.imageList,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +22,8 @@ class MainCardsWithTitle extends StatelessWidget {
           maxHeight: MediaQuery.of(context).devicePixelRatio * 70,
           child: ListView(
               scrollDirection: Axis.horizontal,
-              children: List.generate(10, (index) => const MainCard())),
+              children: List.generate(imageList.length,
+                  (index) => MainCard(imgeUrl: imageList[index]))),
         ),
       ],
     );

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:netflix_clone/core/colors.dart';
-import 'package:netflix_clone/core/constants.dart';
 import 'package:netflix_clone/presentation/home/widgets/button_widget.dart';
 
 class BackgroundHome extends StatelessWidget {
-  const BackgroundHome({Key? key}) : super(key: key);
+  final String imageUrl;
+  const BackgroundHome({Key? key,required this.imageUrl}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,11 +12,11 @@ class BackgroundHome extends StatelessWidget {
       children: [
         Container(
           width: double.infinity,
-          height: MediaQuery.of(context).devicePixelRatio * 150,
-          decoration: const BoxDecoration(
+          height: MediaQuery.of(context).devicePixelRatio * 175,
+          decoration:  BoxDecoration(
               image: DecorationImage(
-            image: NetworkImage(kMainImage),
-            fit: BoxFit.cover,
+            image: NetworkImage(imageUrl),
+            fit: BoxFit.fill,
           )),
         ),
         Positioned(

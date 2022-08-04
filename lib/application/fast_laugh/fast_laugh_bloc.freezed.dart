@@ -531,11 +531,11 @@ class _$FastLaughStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$$_InitialCopyWith<$Res>
+abstract class _$$_FastLaughStateCopyWith<$Res>
     implements $FastLaughStateCopyWith<$Res> {
-  factory _$$_InitialCopyWith(
-          _$_Initial value, $Res Function(_$_Initial) then) =
-      __$$_InitialCopyWithImpl<$Res>;
+  factory _$$_FastLaughStateCopyWith(
+          _$_FastLaughState value, $Res Function(_$_FastLaughState) then) =
+      __$$_FastLaughStateCopyWithImpl<$Res>;
   @override
   $Res call(
       {List<Downloads> videoList,
@@ -545,13 +545,15 @@ abstract class _$$_InitialCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_InitialCopyWithImpl<$Res> extends _$FastLaughStateCopyWithImpl<$Res>
-    implements _$$_InitialCopyWith<$Res> {
-  __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
-      : super(_value, (v) => _then(v as _$_Initial));
+class __$$_FastLaughStateCopyWithImpl<$Res>
+    extends _$FastLaughStateCopyWithImpl<$Res>
+    implements _$$_FastLaughStateCopyWith<$Res> {
+  __$$_FastLaughStateCopyWithImpl(
+      _$_FastLaughState _value, $Res Function(_$_FastLaughState) _then)
+      : super(_value, (v) => _then(v as _$_FastLaughState));
 
   @override
-  _$_Initial get _value => super._value as _$_Initial;
+  _$_FastLaughState get _value => super._value as _$_FastLaughState;
 
   @override
   $Res call({
@@ -560,7 +562,7 @@ class __$$_InitialCopyWithImpl<$Res> extends _$FastLaughStateCopyWithImpl<$Res>
     Object? isLoading = freezed,
     Object? isError = freezed,
   }) {
-    return _then(_$_Initial(
+    return _then(_$_FastLaughState(
       videoList: videoList == freezed
           ? _value._videoList
           : videoList // ignore: cast_nullable_to_non_nullable
@@ -583,8 +585,8 @@ class __$$_InitialCopyWithImpl<$Res> extends _$FastLaughStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Initial implements _Initial {
-  const _$_Initial(
+class _$_FastLaughState implements _FastLaughState {
+  const _$_FastLaughState(
       {required final List<Downloads> videoList,
       final List<int> likedVideoIDs = const [],
       required this.isLoading,
@@ -621,7 +623,7 @@ class _$_Initial implements _Initial {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Initial &&
+            other is _$_FastLaughState &&
             const DeepCollectionEquality()
                 .equals(other._videoList, _videoList) &&
             const DeepCollectionEquality()
@@ -640,16 +642,16 @@ class _$_Initial implements _Initial {
 
   @JsonKey(ignore: true)
   @override
-  _$$_InitialCopyWith<_$_Initial> get copyWith =>
-      __$$_InitialCopyWithImpl<_$_Initial>(this, _$identity);
+  _$$_FastLaughStateCopyWith<_$_FastLaughState> get copyWith =>
+      __$$_FastLaughStateCopyWithImpl<_$_FastLaughState>(this, _$identity);
 }
 
-abstract class _Initial implements FastLaughState {
-  const factory _Initial(
+abstract class _FastLaughState implements FastLaughState {
+  const factory _FastLaughState(
       {required final List<Downloads> videoList,
       final List<int> likedVideoIDs,
       required final bool isLoading,
-      required final bool isError}) = _$_Initial;
+      required final bool isError}) = _$_FastLaughState;
 
   @override
   List<Downloads> get videoList;
@@ -661,6 +663,6 @@ abstract class _Initial implements FastLaughState {
   bool get isError;
   @override
   @JsonKey(ignore: true)
-  _$$_InitialCopyWith<_$_Initial> get copyWith =>
+  _$$_FastLaughStateCopyWith<_$_FastLaughState> get copyWith =>
       throw _privateConstructorUsedError;
 }

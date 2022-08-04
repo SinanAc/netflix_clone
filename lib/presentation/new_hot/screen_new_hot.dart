@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:netflix_clone/core/colors.dart';
 import 'package:netflix_clone/core/constants.dart';
-import 'package:netflix_clone/presentation/new_hot/widgets/coming_soon.dart';
-import 'package:netflix_clone/presentation/new_hot/widgets/everyones.dart';
+import 'package:netflix_clone/presentation/new_hot/widgets/buid_everyones.dart';
+import 'package:netflix_clone/presentation/new_hot/widgets/build_coming.dart';
 import 'package:netflix_clone/presentation/widgets/app_bar_widget.dart';
 
 class ScreenNewHot extends StatelessWidget {
@@ -44,28 +44,22 @@ class ScreenNewHot extends StatelessWidget {
                 ],
               ),
             )),
-        body: Padding(
-          padding: const EdgeInsets.all(8),
-          child: TabBarView(children: [
-            _buildComingSoon(context),
-            _buildEveryones(),
-          ]),
-        ),
+        body: const TabBarView(children: [
+          BuildComingSoonList(key: Key('coming_soon')),
+          BuildEveryonesList(key: Key('everyones')),
+        ]),
       ),
     );
   }
-
-  Widget _buildComingSoon(context) {
-    return ListView.separated(
-        itemCount: 5,
-        itemBuilder: (context, index) => const ComingSoonWidget(),
-        separatorBuilder: (context, index) => kHeight15);
-  }
-
-  Widget _buildEveryones() {
-    return ListView.separated(
-        itemCount: 5,
-        itemBuilder: (context, index) => const EveryonesWidget(),
-        separatorBuilder: (context, index) => kHeight15);
-  }
 }
+
+// Widget _buildComingSoon(context) {
+
+// }
+
+// Widget _buildEveryones() {
+//   return ListView.separated(
+//       itemCount: 5,
+//       itemBuilder: (context, index) => const EveryonesWidget(),
+//       separatorBuilder: (context, index) => kHeight15);
+// }

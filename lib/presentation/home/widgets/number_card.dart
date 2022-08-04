@@ -5,8 +5,10 @@ import 'package:netflix_clone/presentation/widgets/main_title.dart';
 
 class NumberCard extends StatelessWidget {
   final String title;
+  final List<String> imgList;
   const NumberCard({
     Key? key,
+    required this.imgList,
     required this.title,
   }) : super(key: key);
 
@@ -21,7 +23,12 @@ class NumberCard extends StatelessWidget {
           maxHeight: MediaQuery.of(context).devicePixelRatio * 70,
           child: ListView(
               scrollDirection: Axis.horizontal,
-              children: List.generate(10, (index) => MovieCard(index: index))),
+              children: List.generate(
+                  10,
+                  (index) => MovieCard(
+                        index: index,
+                        imgUrl: imgList[index],
+                      ))),
         ),
       ],
     );

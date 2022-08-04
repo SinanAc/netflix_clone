@@ -17,12 +17,12 @@ class TopSearchItemTile extends StatelessWidget {
     return Row(
       children: [
         Container(
-          height: 85,
+          height: 95,
           width: screenWidth * 0.38,
           decoration: BoxDecoration(
             borderRadius: const BorderRadius.all(Radius.circular(8)),
             image: DecorationImage(
-                image: NetworkImage(imageUrl), fit: BoxFit.cover),
+                image: NetworkImage(imageUrl), fit: BoxFit.fill),
           ),
         ),
         kWidth,

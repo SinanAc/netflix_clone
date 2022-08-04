@@ -20,7 +20,7 @@ class ButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Icon(icon, size: iconSize, color: kWhiteColor),
+        Icon(icon, size: iconSize, color: isNewHot ? kGreyColor : kWhiteColor),
         Text(
           buttonText,
           style: TextStyle(

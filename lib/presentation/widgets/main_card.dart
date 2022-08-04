@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 
-const gridImage =
-    "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/y4BbshOj69MOIhsm0oELDnymiTY.jpg";
-
 class MainCard extends StatelessWidget {
+  final String imgeUrl;
   const MainCard({
     Key? key,
+    required this.imgeUrl,
   }) : super(key: key);
 
   @override
@@ -16,8 +15,8 @@ class MainCard extends StatelessWidget {
       width: MediaQuery.of(context).devicePixelRatio * 50,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(7),
-          image: const DecorationImage(
-            image: NetworkImage(gridImage),
+          image: DecorationImage(
+            image: NetworkImage(imgeUrl),
             fit: BoxFit.cover,
           )),
     );

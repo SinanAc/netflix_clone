@@ -45,7 +45,7 @@ class Section2 extends StatelessWidget {
                         alignment: AlignmentDirectional.center,
                         children: [
                           CircleAvatar(
-                            radius: size.width * 0.38,
+                            radius: size.width * 0.34,
                             backgroundColor: kGreyColor[800],
                           ),
                           DownloadsImageWidget(

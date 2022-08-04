@@ -1,12 +1,13 @@
 import 'package:bordered_text/bordered_text.dart';
 import 'package:flutter/material.dart';
 import 'package:netflix_clone/core/colors.dart';
-import 'package:netflix_clone/presentation/widgets/main_card.dart';
 
 class MovieCard extends StatelessWidget {
   final int index;
+  final String imgUrl;
   const MovieCard({
     Key? key,
+    required this.imgUrl,
     required this.index,
   }) : super(key: key);
 
@@ -23,8 +24,8 @@ class MovieCard extends StatelessWidget {
               width: MediaQuery.of(context).devicePixelRatio * 50,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(7),
-                  image: const DecorationImage(
-                    image: NetworkImage(gridImage),
+                  image: DecorationImage(
+                    image: NetworkImage(imgUrl),
                     fit: BoxFit.cover,
                   )),
             ),

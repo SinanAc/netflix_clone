@@ -1,3 +1,6 @@
+// ignore_for_file: invalid_use_of_visible_for_testing_member, invalid_use_of_protected_member, avoid_types_as_parameter_names
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:netflix_clone/application/fast_laugh/fast_laugh_bloc.dart';
 import 'package:netflix_clone/core/colors.dart';
@@ -99,9 +102,9 @@ class VideoListItem extends StatelessWidget {
                         Share.share(vidUrl);
                       },
                       child: const ActionsWidget(
-                          icon: Icons.send_outlined,
-                          title: 'Share',
-                          isShare: true),
+                        icon: CupertinoIcons.paperplane,
+                        title: 'Share',
+                      ),
                     ),
                     kHeight15,
                     const ActionsWidget(icon: Icons.play_arrow, title: 'Play'),

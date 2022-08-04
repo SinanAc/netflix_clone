@@ -1,40 +1,43 @@
 import 'package:json_annotation/json_annotation.dart';
-part 'hot_new_response.g.dart';
+part 'new_hot_response.g.dart';
 
 @JsonSerializable()
-class HotNewResponse {
-
+class NewHotResponse {
   @JsonKey(name: 'page')
   int? page;
 
   @JsonKey(name: 'results')
-  List<HotNewData>? results;
+  List<NewHotData> results;
 
-
-  HotNewResponse({
+  NewHotResponse({
     this.page,
-    this.results=const[],
+    this.results = const [],
   });
 
-  factory HotNewResponse.fromJson(Map<String, dynamic> json) {
-    return _$HotNewResponseFromJson(json);
+  factory NewHotResponse.fromJson(Map<String, dynamic> json) {
+    return _$NewHotResponseFromJson(json);
   }
 
-  Map<String, dynamic> toJson() => _$HotNewResponseToJson(this);
+  Map<String, dynamic> toJson() => _$NewHotResponseToJson(this);
 }
 
-
-
 @JsonSerializable()
-class HotNewData {
+class NewHotData {
   @JsonKey(name: 'backdrop_path')
   String? backdropPath;
   @JsonKey(name: 'id')
   int? id;
   @JsonKey(name: 'original_language')
   String? originalLanguage;
+
+  // -- // -- in everyones section, use original_title
   @JsonKey(name: 'original_title')
   String? originalTitle;
+
+  // -- in everyones section, use original_name instead of original_title
+  @JsonKey(name: 'original_name')
+  String? originalName;
+
   @JsonKey(name: 'overview')
   String? overview;
   @JsonKey(name: 'poster_path')
@@ -44,8 +47,7 @@ class HotNewData {
   @JsonKey(name: 'title')
   String? title;
 
-
-  HotNewData({
+  NewHotData({
     this.backdropPath,
     this.id,
     this.originalLanguage,
@@ -54,11 +56,11 @@ class HotNewData {
     this.posterPath,
     this.releaseDate,
     this.title,
-    });
+  });
 
-  factory HotNewData.fromJson(Map<String, dynamic> json) {
-    return _$HotNewDataFromJson(json);
+  factory NewHotData.fromJson(Map<String, dynamic> json) {
+    return _$NewHotDataFromJson(json);
   }
 
-  Map<String, dynamic> toJson() => _$HotNewDataToJson(this);
+  Map<String, dynamic> toJson() => _$NewHotDataToJson(this);
 }
